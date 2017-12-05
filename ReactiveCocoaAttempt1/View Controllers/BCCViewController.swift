@@ -19,27 +19,21 @@ class BCCViewController: UIViewController {
     @IBOutlet weak var colorTextField: UITextField!
     @IBOutlet weak var backgroundColorChangeButton: UIButton!
 
+    @IBOutlet weak var hexLabel: UILabel!
     
     override func viewDidLoad() {
         self.viewModel = BCCViewModel()
         super.viewDidLoad()
                 
         backgroundColorChangeButton.reactive.controlEvents(.touchUpInside).observe(on: UIScheduler()).observeValues { [weak self] _ in
-            // MARK: - Q1. why is self optional here?
-            // because you told the observer it was weak. If the VC gets deinitialized then self would be nil?... though the event will never trigger if the VC is killed
-
-            if let color = self?.viewModel.randColor {
-                // don't set the textField text manually, send the value down the pipe
-                //self?.viewModel.colorTextFieldValuePipe.input.send(value: color?.name)
-                self?.viewModel.currentColorDisplayText.value = color.name
-                self?.view.backgroundColor = color.color
-            }
+            self?.viewModel.newColor()
         }
         
         // MARK: - Binding the label
         colorLabel.reactive.text <~ viewModel.currentColorDisplayText
         
-        
+        view.reactive.backgroundColor <~ viewModel.backgroundColor
+        hexLabel.reactive.text <~ viewModel.currentColorHexValue
         // MARK: - Binding the textField
         
         // https://stackoverflow.com/questions/41488950/how-do-you-get-a-signal-every-time-a-uitextfield-text-property-changes-in-reacti
@@ -56,6 +50,9 @@ class BCCViewController: UIViewController {
         viewModel.colorTextFieldValueSignal.observeValues { (value) in
             self.viewModel.currentColorDisplayText.value = value ?? ""
         }
+        
+        
+        
     }
 
     

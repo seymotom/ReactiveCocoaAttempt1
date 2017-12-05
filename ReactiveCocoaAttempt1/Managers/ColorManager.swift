@@ -14,18 +14,19 @@ class ColorManager {
     static let shared = ColorManager()
     
     private init() {
-        changeColor()
+//        changeColor()
     }
     
-    var currentColor = MutableProperty<BColor?>(nil)
+//    var currentColor = MutableProperty<BColor?>(nil)
     
-    func changeColor() {
+    func changeColor(completionHandler: @escaping (BColor)->()) {
         APIManager.shared.getData(endpoint: "http://www.colr.org/json/color/random") { (data) in
             if let data = data {
                 do {
                     let resultWrapper = try JSONDecoder().decode(ColorResultWrapper.self, from: data)
                     if let color = resultWrapper.colors.first {
-                        self.currentColor.value = color
+//                        self.currentColor.value = color
+                        completionHandler(color)
                     }
                 }
                 catch {

@@ -18,6 +18,7 @@
 		DEA3465D1FD5BFF400BFF8D9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3465C1FD5BFF400BFF8D9 /* APIManager.swift */; };
 		DEA3465F1FD5C0C500BFF8D9 /* BasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3465E1FD5C0C500BFF8D9 /* BasicColor.swift */; };
 		DEA346641FD5C1B000BFF8D9 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA346631FD5C1B000BFF8D9 /* ColorManager.swift */; };
+		DEA346661FD5EC6100BFF8D9 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA346651FD5EC6100BFF8D9 /* Extension+UIColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		DEA3465C1FD5BFF400BFF8D9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		DEA3465E1FD5C0C500BFF8D9 /* BasicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColor.swift; sourceTree = "<group>"; };
 		DEA346631FD5C1B000BFF8D9 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		DEA346651FD5EC6100BFF8D9 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				DEA346611FD5C17100BFF8D9 /* View Controllers */,
 				DEA346601FD5C0EA00BFF8D9 /* Model */,
 				DEA346621FD5C18200BFF8D9 /* Managers */,
+				DEA346651FD5EC6100BFF8D9 /* Extension+UIColor.swift */,
 			);
 			path = ReactiveCocoaAttempt1;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				DEA3465D1FD5BFF400BFF8D9 /* APIManager.swift in Sources */,
 				DEA346391FD45E0000BFF8D9 /* BCCViewModel.swift in Sources */,
 				DEA3463B1FD45E0D00BFF8D9 /* BCCViewController.swift in Sources */,
+				DEA346661FD5EC6100BFF8D9 /* Extension+UIColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

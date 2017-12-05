@@ -7,33 +7,43 @@
 //
 
 import Foundation
-import UIKit
 import ReactiveCocoa
 import ReactiveSwift
+import UIKit
 import Result
 
 class BCCViewModel: NSObject {
     
-//    let currentColorDisplayText = MutableProperty(ColorManager.shared.currentColor.value?.name ?? "")
-//    let currentColorHexValue = MutableProperty(ColorManager.shared.currentColor.value?.hex ?? "ffffff")
+    var currentColor: BColor? {
+        didSet {
+            if let color = currentColor {
+                self.currentColorDisplayText.value = color.name
+                self.currentColorHexValue.value = color.hex
+                self.backgroundColor.value = UIColor(hexString: color.hex)
+            }
+        }
+    }
     
+    var isLoading: Bool = false
+
     let currentColorDisplayText = MutableProperty("white")
-    
-        
-    var currentColor = BasicColor(color: .white, name: "white")
+    let currentColorHexValue = MutableProperty("ffffff")
+    let backgroundColor = MutableProperty(UIColor(hexString: "ffffff"))
     
     
     let colorTextFieldValuePipe = Signal<String?, NoError>.pipe()
     var colorTextFieldValueSignal: Signal<String?, NoError>!
-
-    
     
     override init() {
         
     }
     
-    var randColor: BasicColor {
-        currentColor = BasicColor.colors[Int(arc4random_uniform(UInt32(BasicColor.colors.count - 1)))]
-        return currentColor
+    func newColor() {
+        isLoading = true
+        ColorManager.shared.changeColor { (color) in
+            self.isLoading = false
+            self.currentColor = color
+        }
     }
+    
 }

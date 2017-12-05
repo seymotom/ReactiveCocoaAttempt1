@@ -7,9 +7,7 @@
 //
 
 import Foundation
-import ReactiveCocoa
 import ReactiveSwift
-import UIKit
 import Result
 
 class BCCViewModel: NSObject {
@@ -19,16 +17,16 @@ class BCCViewModel: NSObject {
             if let color = currentColor {
                 self.currentColorDisplayText.value = color.name
                 self.currentColorHexValue.value = color.hex
-                self.backgroundColor.value = UIColor(hexString: color.hex)
+//                self.backgroundColor.value = UIColor(hexString: color.hex)
             }
         }
     }
     
     var isLoading: Bool = false
 
-    let currentColorDisplayText = MutableProperty("white")
-    let currentColorHexValue = MutableProperty("ffffff")
-    let backgroundColor = MutableProperty(UIColor(hexString: "ffffff"))
+    let currentColorDisplayText = MutableProperty<String>("white")
+    let currentColorHexValue = MutableProperty<String>("ffffff")
+//    let backgroundColor = MutableProperty<UIColor>(UIColor(hexString: "ffffff"))
     
     
     let colorTextFieldValuePipe = Signal<String?, NoError>.pipe()
@@ -40,10 +38,17 @@ class BCCViewModel: NSObject {
     
     func newColor() {
         isLoading = true
-        ColorManager.shared.changeColor { (color) in
-            self.isLoading = false
-            self.currentColor = color
-        }
+        ColorManager.shared.changeColor().on(failed: { error in
+            print(error)
+        }, value: { [weak self] (color) in
+            self?.currentColor = color
+        }).start()
+        
+//            {
+//                (color) in
+//            self.isLoading = false
+//            self.currentColor = color
+//        }
     }
     
 }

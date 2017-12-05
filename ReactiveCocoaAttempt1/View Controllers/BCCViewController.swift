@@ -32,8 +32,12 @@ class BCCViewController: UIViewController {
         // MARK: - Binding the label
         colorLabel.reactive.text <~ viewModel.currentColorDisplayText
         
-        view.reactive.backgroundColor <~ viewModel.backgroundColor
+        view.reactive.backgroundColor <~ viewModel.currentColorHexValue.map({ hex in
+            return UIColor(hexString: hex) 
+        })
+        
         hexLabel.reactive.text <~ viewModel.currentColorHexValue
+        
         // MARK: - Binding the textField
         
         // https://stackoverflow.com/questions/41488950/how-do-you-get-a-signal-every-time-a-uitextfield-text-property-changes-in-reacti

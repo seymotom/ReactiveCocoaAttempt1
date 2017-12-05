@@ -9,7 +9,7 @@
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
-import UIKit
+//import UIKit
 import Result
 
 class BCCViewModel: NSObject {
@@ -17,24 +17,41 @@ class BCCViewModel: NSObject {
     var currentColor: BColor? {
         didSet {
             if let color = currentColor {
-                self.currentColorDisplayText.value = color.name
-                self.currentColorHexValue.value = color.hex
-                self.backgroundColor.value = UIColor(hexString: color.hex)
+                // Mutable Properties
+//                self.currentColorDisplayTextMP.value = color.name
+//                self.currentColorHexValueMP.value = color.hex
+//                self.backgroundColorMP.value = UIColor(hexString: color.hex)
+                
+                // Signal
+                // emit some kind of signal that the VC recievs to update the UI
+                self.currentColorName = color.name
+                self.currentColorHex = color.hex
+                self.colorUpdatePipe.input.send(value: ())
             }
         }
     }
     
+    var currentColorName: String = "white"
+    var currentColorHex: String = "ffffff"
+    
+    
     var isLoading: Bool = false
 
-    let currentColorDisplayText = MutableProperty("white")
-    let currentColorHexValue = MutableProperty("ffffff")
-    let backgroundColor = MutableProperty(UIColor(hexString: "ffffff"))
+//    let currentColorDisplayTextMP = MutableProperty("white")
+//    let currentColorHexValueMP = MutableProperty("ffffff")
+    
+//    let backgroundColorMP = MutableProperty(UIColor(hexString: "ffffff"))
     
     
-    let colorTextFieldValuePipe = Signal<String?, NoError>.pipe()
-    var colorTextFieldValueSignal: Signal<String?, NoError>!
+//    let colorTextFieldValuePipe = Signal<String?, NoError>.pipe()
+//    var colorTextFieldValueSignal: Signal<String?, NoError>!
+    
+    
+    let colorUpdatePipe = Signal<Void, NoError>.pipe()
     
     override init() {
+        super.init()
+        
         
     }
     

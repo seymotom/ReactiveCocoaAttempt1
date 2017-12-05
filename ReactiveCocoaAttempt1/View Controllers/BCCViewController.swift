@@ -29,30 +29,41 @@ class BCCViewController: UIViewController {
             self?.viewModel.newColor()
         }
         
-        // MARK: - Binding the label
-        colorLabel.reactive.text <~ viewModel.currentColorDisplayText
+//        // MARK: - Binding the label
+//        colorLabel.reactive.text <~ viewModel.currentColorDisplayTextMP
+//
+//        view.reactive.backgroundColor <~ viewModel.backgroundColorMP
+//        hexLabel.reactive.text <~ viewModel.currentColorHexValueMP
+//
+//
+//        // MARK: - Binding the textField
+//
+//        // https://stackoverflow.com/questions/41488950/how-do-you-get-a-signal-every-time-a-uitextfield-text-property-changes-in-reacti
+//        // Bind the text of the text field to the signal pipe's output
+//        colorTextField.reactive.text <~ viewModel.currentColorDisplayTextMP //viewModel.colorTextFieldValuePipe.output
+//        // A signal of text values emitted by the text field upon end of editing.
+//        let ctfValuesSignal = colorTextField.reactive.textValues
+//        // A signal of text values emitted by the text field upon any changes.
+//        let ctfContinuousValuesSignal = colorTextField.reactive.continuousTextValues
+//        // Merge the relevant signals
+//        viewModel.colorTextFieldValueSignal = Signal.merge(ctfValuesSignal, ctfContinuousValuesSignal)
+//
+//        // This will update the label when the textField's value is changed by the user or programmatically
+//        viewModel.colorTextFieldValueSignal.observeValues { (value) in
+//            self.viewModel.currentColorDisplayTextMP.value = value ?? ""
+//        }
         
-        view.reactive.backgroundColor <~ viewModel.backgroundColor
-        hexLabel.reactive.text <~ viewModel.currentColorHexValue
-        // MARK: - Binding the textField
-        
-        // https://stackoverflow.com/questions/41488950/how-do-you-get-a-signal-every-time-a-uitextfield-text-property-changes-in-reacti
-        // Bind the text of the text field to the signal pipe's output
-        colorTextField.reactive.text <~ viewModel.currentColorDisplayText //viewModel.colorTextFieldValuePipe.output
-        // A signal of text values emitted by the text field upon end of editing.
-        let ctfValuesSignal = colorTextField.reactive.textValues
-        // A signal of text values emitted by the text field upon any changes.
-        let ctfContinuousValuesSignal = colorTextField.reactive.continuousTextValues
-        // Merge the relevant signals
-        viewModel.colorTextFieldValueSignal = Signal.merge(ctfValuesSignal, ctfContinuousValuesSignal)
-    
-        // This will update the label when the textField's value is changed by the user or programmatically
-        viewModel.colorTextFieldValueSignal.observeValues { (value) in
-            self.viewModel.currentColorDisplayText.value = value ?? ""
+        viewModel.colorUpdatePipe.output.observe { (_) in
+            self.refreshUI()
         }
         
-        
-        
+    }
+    
+    func refreshUI() {
+        DispatchQueue.main.async {
+            self.colorLabel.text = self.viewModel.currentColorName
+            self.view.backgroundColor = UIColor(hexString: self.viewModel.currentColorHex)
+        }
     }
 
     

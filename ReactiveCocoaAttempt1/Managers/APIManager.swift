@@ -18,23 +18,19 @@ enum APIError: Error {
 
 class APIManager {
     
-    static let shared = APIManager()
-    
     private init() {}
     
-    func getData(endpoint: String) -> SignalProducer<Data, APIError> {
+    static func getData(endpoint: String) -> SignalProducer<Data, APIError> {
         return SignalProducer { observer, disposable in
             guard let url = URL(string: endpoint) else { return }
                     let request = URLRequest(url: url)
                     let task = URLSession.shared.dataTask(with: request) { (data: Data?, response: URLResponse?, error: Error?) in
                         if let myError = error {
                             print(myError)
-//                            completionHandler(nil)
                             observer.send(error: APIError.jsonError(error: myError))
                             observer.sendCompleted()
                         }
                         if let myData = data {
-//                            completionHandler(myData)
                             observer.send(value: myData)
                             observer.sendCompleted()
                         }

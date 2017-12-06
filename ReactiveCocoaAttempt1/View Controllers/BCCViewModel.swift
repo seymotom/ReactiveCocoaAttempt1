@@ -17,17 +17,14 @@ class BCCViewModel: NSObject {
             if let color = currentColor {
                 self.currentColorDisplayText.value = color.name
                 self.currentColorHexValue.value = color.hex
-//                self.backgroundColor.value = UIColor(hexString: color.hex)
             }
         }
     }
     
-    var isLoading: Bool = false
+    var isLoading = MutableProperty<Bool>(false)
 
     let currentColorDisplayText = MutableProperty<String>("white")
     let currentColorHexValue = MutableProperty<String>("ffffff")
-//    let backgroundColor = MutableProperty<UIColor>(UIColor(hexString: "ffffff"))
-    
     
     let colorTextFieldValuePipe = Signal<String?, NoError>.pipe()
     var colorTextFieldValueSignal: Signal<String?, NoError>!
@@ -36,19 +33,44 @@ class BCCViewModel: NSObject {
         
     }
     
-    func newColor() {
-        isLoading = true
-        ColorManager.shared.changeColor().on(failed: { error in
-            print(error)
-        }, value: { [weak self] (color) in
-            self?.currentColor = color
-        }).start()
-        
-//            {
-//                (color) in
-//            self.isLoading = false
-//            self.currentColor = color
-//        }
-    }
+//    func newColor() {
+//        isLoading.value = true
+//        ColorManager.changeColor().on(failed: { error in
+//            print(error)
+//        }, value: { [weak self] (color) in
+//            self?.currentColor = color
+//            self?.isLoading.value = false
+//        }).start()
+//    }
+    
+    
+    lazy var newColorAction: Action<Void, Void, NoError> = {
+        return Action { _ in
+            return SignalProducer<Void, NoError> { observer, _ in
+                self.isLoading.value = true
+                ColorManager.changeColor().on(failed: { error in
+                    print(error)
+                }, value: { [weak self] (color) in
+                    self?.currentColor = color
+                    self?.isLoading.value = false
+                }).start()
+                observer.sendCompleted()
+            }
+        }
+    }()
+    
+    lazy var saveColorAction: Action<Void, Void, NoError> = {
+        return Action<Void, Void, NoError> { _ in
+            
+            return SignalProducer<Void, NoError> { observer, _ in
+                if let currentColor = self.currentColor {
+                    ColorManager.saveColor(currentColor)
+                }
+                observer.sendCompleted()
+            }
+        }
+    }()
+    
+    
     
 }

@@ -21,13 +21,18 @@ class BCCViewController: UIViewController {
 
     @IBOutlet weak var hexLabel: UILabel!
     
+    @IBOutlet weak var addFavoriteButton: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    
+    
     override func viewDidLoad() {
         self.viewModel = BCCViewModel()
         super.viewDidLoad()
                 
-        backgroundColorChangeButton.reactive.controlEvents(.touchUpInside).observe(on: UIScheduler()).observeValues { [weak self] _ in
-            self?.viewModel.newColor()
-        }
+//        backgroundColorChangeButton.reactive.controlEvents(.touchUpInside).observe(on: UIScheduler()).observeValues { [weak self] _ in
+//            self?.viewModel.newColor()
+//        }
         
         // MARK: - Binding the label
         colorLabel.reactive.text <~ viewModel.currentColorDisplayText
@@ -37,6 +42,16 @@ class BCCViewController: UIViewController {
         })
         
         hexLabel.reactive.text <~ viewModel.currentColorHexValue
+        
+        activityIndicator.reactive.isAnimating <~ viewModel.isLoading
+        backgroundColorChangeButton.reactive.isEnabled <~ viewModel.isLoading.map { !$0 }
+        
+        
+        addFavoriteButton.reactive.pressed = CocoaAction(viewModel.saveColorAction)
+        
+        backgroundColorChangeButton.reactive.pressed = CocoaAction(viewModel.newColorAction)
+        
+        
         
         // MARK: - Binding the textField
         
@@ -58,7 +73,12 @@ class BCCViewController: UIViewController {
         
         
     }
-
+    
+    
+//    @IBAction func addPressed(_ sender: UIBarButtonItem) {
+//        viewModel.saveColor()
+//    }
+    
     
 
 }

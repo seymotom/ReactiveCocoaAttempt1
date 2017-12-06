@@ -19,6 +19,10 @@
 		DEA3465F1FD5C0C500BFF8D9 /* BasicColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3465E1FD5C0C500BFF8D9 /* BasicColor.swift */; };
 		DEA346641FD5C1B000BFF8D9 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA346631FD5C1B000BFF8D9 /* ColorManager.swift */; };
 		DEA346661FD5EC6100BFF8D9 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA346651FD5EC6100BFF8D9 /* Extension+UIColor.swift */; };
+		DEA346681FD8745D00BFF8D9 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA346671FD8745D00BFF8D9 /* FavoritesViewController.swift */; };
+		DEA3466A1FD8747100BFF8D9 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA346691FD8747100BFF8D9 /* FavoritesViewModel.swift */; };
+		DEA3466C1FD8803C00BFF8D9 /* FavoriteCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3466B1FD8803C00BFF8D9 /* FavoriteCellViewModel.swift */; };
+		DEA3466E1FD892F400BFF8D9 /* FavoriteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEA3466D1FD892F400BFF8D9 /* FavoriteTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +42,10 @@
 		DEA3465E1FD5C0C500BFF8D9 /* BasicColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicColor.swift; sourceTree = "<group>"; };
 		DEA346631FD5C1B000BFF8D9 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		DEA346651FD5EC6100BFF8D9 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		DEA346671FD8745D00BFF8D9 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		DEA346691FD8747100BFF8D9 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		DEA3466B1FD8803C00BFF8D9 /* FavoriteCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCellViewModel.swift; sourceTree = "<group>"; };
+		DEA3466D1FD892F400BFF8D9 /* FavoriteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,10 @@
 			children = (
 				DEA346381FD45E0000BFF8D9 /* BCCViewModel.swift */,
 				DEA3463A1FD45E0D00BFF8D9 /* BCCViewController.swift */,
+				DEA346671FD8745D00BFF8D9 /* FavoritesViewController.swift */,
+				DEA346691FD8747100BFF8D9 /* FavoritesViewModel.swift */,
+				DEA3466B1FD8803C00BFF8D9 /* FavoriteCellViewModel.swift */,
+				DEA3466D1FD892F400BFF8D9 /* FavoriteTableViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -265,7 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA3466A1FD8747100BFF8D9 /* FavoritesViewModel.swift in Sources */,
+				DEA3466E1FD892F400BFF8D9 /* FavoriteTableViewCell.swift in Sources */,
 				DEA346641FD5C1B000BFF8D9 /* ColorManager.swift in Sources */,
+				DEA3466C1FD8803C00BFF8D9 /* FavoriteCellViewModel.swift in Sources */,
+				DEA346681FD8745D00BFF8D9 /* FavoritesViewController.swift in Sources */,
 				DEA3463D1FD47CE100BFF8D9 /* BColor.swift in Sources */,
 				DE53BF2A1FC0C0E50096B8F0 /* AppDelegate.swift in Sources */,
 				DEA3465F1FD5C0C500BFF8D9 /* BasicColor.swift in Sources */,

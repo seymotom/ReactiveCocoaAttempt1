@@ -12,17 +12,14 @@ import Result
 
 class ColorManager {
     
-    static let shared = ColorManager()
+//    static let shared = ColorManager()
     
-    private init() {
-//        changeColor()
-    }
+    private init() {}
     
-//    var currentColor = MutableProperty<BColor?>(nil)
     
-    func changeColor() -> SignalProducer<BColor, APIError> {
+    static func changeColor() -> SignalProducer<BColor, APIError> {
         
-        return APIManager.shared.getData(endpoint: "http://www.colr.org/json/color/random").attemptMap({ data in
+        return APIManager.getData(endpoint: "http://www.colr.org/json/color/random").attemptMap({ data in
             
             do {
                 let resultWrapper = try JSONDecoder().decode(ColorResultWrapper.self, from: data)
@@ -56,4 +53,16 @@ class ColorManager {
 //        }
     }
     
+    static func saveColor(_ color: BColor) {
+        let colors = getFavoriteColors()
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(colors + [color]), forKey: "colors")
+    }
+    
+    static func getFavoriteColors() -> [BColor] {
+        if let data = UserDefaults.standard.value(forKey:"colors") as? Data,
+            let colors = try? PropertyListDecoder().decode([BColor].self, from: data) {
+            return colors
+        }
+        return []
+    }
 }

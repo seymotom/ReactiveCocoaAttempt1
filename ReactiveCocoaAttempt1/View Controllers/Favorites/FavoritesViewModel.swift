@@ -24,6 +24,11 @@ class FavoritesViewModel {
         self.favColors = ColorManager.getFavoriteColors()
     }
     
+    func removeColor(at indexPath: IndexPath) {
+        self.favColors?.remove(at: indexPath.row)
+        ColorManager.deleteColor(indexPath)
+    }
+    
     func numberOfSections() -> Int {
         return 1
     }

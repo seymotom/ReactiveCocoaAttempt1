@@ -53,6 +53,12 @@ class ColorManager {
 //        }
     }
     
+    static func deleteColor(_ indexPath: IndexPath) {
+        var colors = getFavoriteColors()
+        colors.remove(at: indexPath.row)
+        UserDefaults.standard.set(try? PropertyListEncoder().encode(colors), forKey: "colors")
+    }
+    
     static func saveColor(_ color: BColor) {
         let colors = getFavoriteColors()
         UserDefaults.standard.set(try? PropertyListEncoder().encode(colors + [color]), forKey: "colors")

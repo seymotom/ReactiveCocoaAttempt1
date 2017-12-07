@@ -22,7 +22,9 @@ class FavoritesViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.dataSource = self
+        
     }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -32,6 +34,13 @@ class FavoritesViewController: UIViewController {
         }
         
         viewModel.getFavoriteColors()
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        self.tableView.setEditing(editing, animated: animated)
+
     }
     
 
@@ -56,6 +65,37 @@ extension FavoritesViewController: UITableViewDataSource {
             return cell
         }
         return UITableViewCell()
+    }
+    
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//
+//    func tableView(_ tableView: UITableView, commit editingStyle:   UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if (editingStyle == .delete) {
+//            viewModel.removeColor(at: indexPath)
+//            tableView.beginUpdates()
+//            tableView.deleteRows(at: [indexPath], with: .middle)
+//            tableView.endUpdates()
+//        }
+//    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            viewModel.removeColor(at: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
 }

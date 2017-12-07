@@ -15,7 +15,7 @@ class BCCViewModel: NSObject {
     var currentColor: BColor? {
         didSet {
             if let color = currentColor {
-                self.currentColorDisplayText.value = color.name
+                self.currentColorDisplayText.value = color.name.capitalized
                 self.currentColorHexValue.value = color.hex
             }
         }
@@ -23,7 +23,7 @@ class BCCViewModel: NSObject {
     
     var isLoading = MutableProperty<Bool>(false)
 
-    let currentColorDisplayText = MutableProperty<String>("white")
+    let currentColorDisplayText = MutableProperty<String>("White")
     let currentColorHexValue = MutableProperty<String>("ffffff")
     
     let colorTextFieldValuePipe = Signal<String?, NoError>.pipe()

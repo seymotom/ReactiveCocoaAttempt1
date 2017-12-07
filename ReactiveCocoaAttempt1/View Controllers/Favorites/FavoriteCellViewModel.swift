@@ -13,7 +13,7 @@ struct FavoriteCellViewModel {
     private var color: BColor!
     
     var displayName: String {
-        return self.color.name
+        return self.color.name.capitalized
     }
     
     var displayHex: String {

@@ -37,7 +37,7 @@ class FormViewModel {
         self.progressMP <~ SignalProducer.combineLatest(self.firstNameMP, self.lastNameMP, self.emailMP)
             .map{ (arg) -> Float in
             let (first, last, email) = arg
-            return Float((!first.isEmpty).hashValue + (!last.isEmpty).hashValue + (!email.isEmpty).hashValue) / 3.0
+            return Float((!first.isEmpty).hashValue + (!last.isEmpty).hashValue + (email.isValidEmail).hashValue) / 3.0
         }
         self.emailTextColoMP <~ self.emailMP.map { emailText in
             return emailText.isValidEmail ? .green : .black

@@ -19,7 +19,8 @@ struct BColor: Codable {
     
     // I think this should be in the viewModel
     var name: String {
-        return tags.reduce("") { $0 + " " + $1.name }
+        let title = tags.reduce("") { $0 + " " + $1.name }
+        return title.isEmpty ? "No Name" : title
     }
     
     struct Tag: Codable {

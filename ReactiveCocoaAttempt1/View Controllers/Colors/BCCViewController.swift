@@ -73,12 +73,4 @@ class BCCViewController: UIViewController {
         
         
     }
-    
-    
-//    @IBAction func addPressed(_ sender: UIBarButtonItem) {
-//        viewModel.saveColor()
-//    }
-    
-    
-
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B8150A740A26639C522187E /* Pods_ReactiveCocoaAttempt1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A2DC6FC3FD867DEAE2B48E /* Pods_ReactiveCocoaAttempt1.framework */; };
+		DE02B1941FDAE50600A963BF /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE02B1931FDAE50600A963BF /* Extension+String.swift */; };
 		DE53BF2A1FC0C0E50096B8F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE53BF291FC0C0E50096B8F0 /* AppDelegate.swift */; };
 		DE53BF2F1FC0C0E50096B8F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE53BF2D1FC0C0E50096B8F0 /* Main.storyboard */; };
 		DE53BF311FC0C0E50096B8F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE53BF301FC0C0E50096B8F0 /* Assets.xcassets */; };
@@ -31,6 +32,7 @@
 		06A2DC6FC3FD867DEAE2B48E /* Pods_ReactiveCocoaAttempt1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveCocoaAttempt1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F30EB3D9161AC6B256F018C /* Pods-ReactiveCocoaAttempt1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveCocoaAttempt1.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveCocoaAttempt1/Pods-ReactiveCocoaAttempt1.release.xcconfig"; sourceTree = "<group>"; };
 		5AEF46501C3B8C72C859C28A /* Pods-ReactiveCocoaAttempt1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveCocoaAttempt1.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveCocoaAttempt1/Pods-ReactiveCocoaAttempt1.debug.xcconfig"; sourceTree = "<group>"; };
+		DE02B1931FDAE50600A963BF /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		DE53BF261FC0C0E50096B8F0 /* ReactiveCocoaAttempt1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReactiveCocoaAttempt1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE53BF291FC0C0E50096B8F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE53BF2E1FC0C0E50096B8F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				DEA346601FD5C0EA00BFF8D9 /* Model */,
 				DEA346621FD5C18200BFF8D9 /* Managers */,
 				DEA346651FD5EC6100BFF8D9 /* Extension+UIColor.swift */,
+				DE02B1931FDAE50600A963BF /* Extension+String.swift */,
 			);
 			path = ReactiveCocoaAttempt1;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				DEA346641FD5C1B000BFF8D9 /* ColorManager.swift in Sources */,
 				DEA3466C1FD8803C00BFF8D9 /* FavoriteCellViewModel.swift in Sources */,
 				DEA346751FD9A4EE00BFF8D9 /* FormViewModel.swift in Sources */,
+				DE02B1941FDAE50600A963BF /* Extension+String.swift in Sources */,
 				DEA346681FD8745D00BFF8D9 /* FavoritesViewController.swift in Sources */,
 				DEA3463D1FD47CE100BFF8D9 /* BColor.swift in Sources */,
 				DE53BF2A1FC0C0E50096B8F0 /* AppDelegate.swift in Sources */,
